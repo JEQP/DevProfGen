@@ -26,6 +26,7 @@ const colors = {
 };
 
 function generateHTML(params) {
+  console.log("Params: " + params + " params.color: " + params.color);
   return `<!DOCTYPE html>
 <html lang="en">
    <head>
@@ -170,11 +171,34 @@ function generateHTML(params) {
             zoom: .75; 
           } 
          }
-      </style>`
-        }
+      </style>
+    </head>
+    <body>
+    <div class="wrapper">
+        <div class="photo-header">
+            <img src="${params.avatar_url}" alt="avatar">
+        </div>
+        <h1>
+            ${params.name}: A Profile 
+        </h1>
+        <p>
+            <div class="links-nav">
+            <a href= class="nav-link">Location</a>  || <a href="https://github.com/${params.name}" alt="Github link" class="nav-link">&nbsp; &nbsp;Github&nbsp; &nbsp;</a>  || <a href="http://${params.blog}" alt="Blog Link" class="nav-link">Blog</a>
+        </div>
+        </p>
+        <div class = "container">
+            <h2>Bio</h2>
+            <div class = "card">
+                <p>
+                    ${params.bio}
+                </p>
+            </div>
+        </div>
+    </div>
+    </body>`
+}
 
-
-        module.exports=generateHTML();
+module.exports = generateHTML;
       //   module.exports = function(options){
       //     console.log(options);
       //     return {

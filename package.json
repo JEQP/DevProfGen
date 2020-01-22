@@ -1,0 +1,34 @@
+{
+  "name": "devprofgen",
+  "version": "1.0.0",
+  "description": "Creating PDF from HTML",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.19.1",
+    "electron-html-to": "^2.6.0",
+    "electron-prebuilt": "^1.4.13",
+    "exports": "^0.0.1",
+    "fs": "^0.0.1-security",
+    "html-pdf": "^2.2.0",
+    "inquirer": "^7.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JEQP/DevProfGen.git"
+  },
+  "keywords": [
+    "pdf",
+    "html",
+    "profile"
+  ],
+  "author": "James Pearce",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JEQP/DevProfGen/issues"
+  },
+  "homepage": "https://github.com/JEQP/DevProfGen#readme"
+}
