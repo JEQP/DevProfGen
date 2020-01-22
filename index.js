@@ -2,9 +2,10 @@ var fs = require('fs');
 var pdf = require('html-pdf');
 var inq = require('inquirer');
 var axios = require('axios');
-// var generateHtML = require('./generateHTML');
+var generateHtML = require('./generateHTML');
+var options = { format: 'Letter' };
 // var exports = require('exports');
-// convertFactory = require('electron-html-to');
+convertFactory = require('electron-html-to');
 
 // var conversion = convertFactory({
 //   converterPath: convertFactory.converters.PDF
@@ -41,6 +42,7 @@ function getPrompts() {
     .prompt(questions)
     .then(function (params) {
       const username = params.username;
+      console.log("Color: " + params.color);
       const queryUrl = `https://api.github.com/users/${username}`;
 
       axios.get(queryUrl).then(function (res) {
@@ -62,22 +64,60 @@ function getPrompts() {
         // console.log(res);
         // const repoNames = res.data.name;
         // console.log(res.data.name);
+      
+      //   .then(htmlData => {
+      //     // console.log(htmlData);
+      //     var conversion = convertFactory({
+      //         converterPath: convertFactory.converters.PDF
+      //     });
+  
+      //     const htmlTrial = `<h1>${username}</h1>`;
+      //     // conversion({ html: htmlTrial }, (err, result) => {
+      //     conversion({ html: htmlData }, (err, result) => {
+  
+      //         if (err) {
+      //             return console.error(err);
+      //         }
+  
+      //         console.log(result.numberOfPages);
+      //         // console.log(result.logs);
+      //         console.log('Success');
+      //         result.stream.pipe(fs.createWriteStream(`./${username}.pdf`));
+      //         conversion.kill(); // necessary if you use the electron-server strategy, see below for details
+      //     open(`./${userName}.pdf`);
+      //     });
+      // })
+      const userColor = params.color;
+      return generateHTML({stars, color, ...res.data});
+    })
+      .then(htmlData => {
+        pdf.create(generateHtML, options).toFile('./profile.pdf', function(err, pdfPro) {
+          if (err) return console.log(err);
+          console.log(pdfPro); 
+        });
+    })
 
 
-
-        // fs.writeFile("profhtml.txt", generateHtML, function (err) {
-        //   if (err) {
-        //     throw err;
-        //   }
-
-        //   console.log(`Saved ${generateHtML} in txt file`);
-        // });
-
+      //   return generateHTML({ userColor, ...res});
+      // }).then(
         
+      //   // htmlFile = function(params, res){
+      //   //   return generateHtML.fun1(params, res);
+      //   // };
+      //   // console.log("htmlFile: " + htmlFile);
 
-      }).catch(err => {
+      //   // fs.writeFile("profhtml.txt", htmlFile, function (err) {
+      //   //   if (err) {
+      //   //     throw err;
+      //   //   }
+
+      //     console.log(`Saved ${htmlFile} in txt file`);
+      //   );
+      // )
+      .catch(err => {
         console.log(err);
       });
+
     });
 };
 

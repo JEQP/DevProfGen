@@ -10,17 +10,17 @@ The user will be prompted for a favorite color, which will be used as the backgr
 
 The PDF will be populated with the following:
 
-* Profile image
-* User name
+* Profile image (data.avatar_url)
+* User name (data.name)
 * Links to the following:
   * User location via Google Maps
-  * User GitHub profile
-  * User blog
-* User bio
-* Number of public repositories
-* Number of followers
-* Number of GitHub stars
-* Number of users following
+  * User GitHub profile (data.html_url)
+  * User blog (data.blog)
+* User bio (data.bio)
+* Number of public repositories (data.repos_url) // maybe check class example
+* Number of followers (data.followers)
+* Number of GitHub stars (data.starred_url)
+* Number of users following (data.following_url)
 
 Following the [common templates for user stories](https://en.wikipedia.org/wiki/User_story#Common_templates), we can frame this challenge as follows:
 
