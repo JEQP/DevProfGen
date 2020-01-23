@@ -10,3 +10,5 @@ The user will be prompted for a GitHub username, and a favorite colour, which wi
 
 The PDF includes the profile picture, name, location, bio, number of repositories, number of followers, number of people following, and number of github stars of the entered GitHub username. 
 The PDF is stored in the same folder as index.js
+An image of the PDF is here: https://github.com/JEQP/DevProfGen/blob/master/JEQP.pdf
+A demo of the app is here: https://github.com/JEQP/DevProfGen/blob/master/Wk9HWdemo.gif
