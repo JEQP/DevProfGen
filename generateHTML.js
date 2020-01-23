@@ -137,6 +137,7 @@ function generateHTML(params) {
          padding: 50px;
          padding-left: 100px;
          padding-right: 100px;
+         
          }
 
          .row {
@@ -148,7 +149,9 @@ function generateHTML(params) {
          }
 
          .card {
+           width: 40%;
            padding: 20px;
+           padding-right: 10px;
            border-radius: 6px;
            background-color: ${colors[params.color].headerBackground};
            color: ${colors[params.color].headerColor};
@@ -176,45 +179,51 @@ function generateHTML(params) {
     <body>
     <div class="wrapper">
         <div class="photo-header">
-            <img src="${params.avatar_url}" alt="avatar">
+          <img src="${params.avatar_url}" alt="avatar">
+            <h1 style="text-align: center;">
+              ${params.name}: A Profile 
+            </h1>
         </div>
-        <h1>
-            ${params.name}: A Profile 
-        </h1>
-        <p>
-            <div class="links-nav">
-            <a href="https://github.com/${params.location}" class="nav-link">Location</a>  || <a href="https://github.com/${params.name}" alt="Github link" class="nav-link">&nbsp; &nbsp;Github&nbsp; &nbsp;</a>  || <a href="http://${params.blog}" alt="Blog Link" class="nav-link">Blog</a>
+        <div class="row">
         </div>
-        </p>
+    <div class="row">
+      <div class="links-nav">
+        <h4>
+          <a href="http://maps.google.com/maps?q=+${params.location}" class="nav-link" target="_blank">Location</a>  || <a href="https://github.com/${params.username}" alt="Github link" class="nav-link" target="_blank">&nbsp; &nbsp;Github&nbsp; &nbsp;</a>  || <a href="http://${params.blog}" alt="Blog Link" class="nav-link" target="_blank">Blog</a>
+        </h4>
+      </div>
+    </div>
+    
         <div class = "container">
-          <row>
-            <h2>Bio</h2>
-            <div class = "card">
+          <div class="row">
+            
+            <div class = "container">
                 <p>
-                    ${params.bio}
+                  <h2 style="text-align: center;">Bio</h2>
+                  <h4 style="text-align: center; font=Arial; ">${params.bio}</h4>
                 </p>
             </div>
-          </row>
-          <row>
-            <div class="card">
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-5 card">
               <h3><b>Public Repositories</b></h3>
               <h3><b>${params.public_repos}</b></h3>
-            </card>
-            <div class="card">
+            </div>
+            <div class="col-sm-12 col-md-5 card">
               <h3><b>GitHub Stars</b></h3>
               <h3><b>${params.totalStars}</b></h3>
             </div>
-          </row>
-          <row>
-            <div class="card">
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-5 card">
               <h3><b>Followers</b></h3>
               <h3><b>${params.followers}</b></h3>
             </div>
-            <div class="card">
+            <div class="col-sm-12 col-md-5 card">
               <h3><b>Following</b></h3>
               <h3><b>${params.following}</b></h3>
             </div>
-          </row>
+          </div>
         </div>
     </div>
     </body>`
