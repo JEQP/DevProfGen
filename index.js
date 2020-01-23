@@ -41,7 +41,7 @@ function getPrompts() {
   inq
     .prompt(questions)
     .then(function ({ username, color }) { // enter the vars created above
-      
+
       console.log("Color: " + color + " username: " + username);
       const queryUrl = `https://api.github.com/users/${username}`;
 
@@ -70,34 +70,33 @@ function getPrompts() {
               totalStars
             });
           }).catch()
-        })
 
 
+            .then(htmlData => {
+              console.log(htmlData);
+              console.log("type of data: " + typeof htmlData);
 
-        .then(htmlData => {
-          console.log(htmlData);
-          console.log("type of data: " + typeof htmlData);
+              // console.log(htmlData);
+              var conversion = convertFactory({
+                converterPath: convertFactory.converters.PDF
+              });
 
-          // console.log(htmlData);
-          var conversion = convertFactory({
-            converterPath: convertFactory.converters.PDF
-          });
+              const htmlTrial = `<h1>${username}</h1>`;
+              // conversion({ html: htmlTrial }, (err, result) => {
+              conversion({ html: htmlData }, (err, result) => {
 
-          const htmlTrial = `<h1>${username}</h1>`;
-          // conversion({ html: htmlTrial }, (err, result) => {
-          conversion({ html: htmlData }, (err, result) => {
+                if (err) {
+                  return console.error(err);
+                }
 
-            if (err) {
-              return console.error(err);
-            }
-
-            console.log(result.numberOfPages);
-            // console.log(result.logs);
-            console.log('Success');
-            result.stream.pipe(fs.createWriteStream(`./${username}.pdf`));
-            conversion.kill(); // necessary if you use the electron-server strategy, see below for details
-            // open(`./${username}.pdf`);
-          });
+                console.log(result.numberOfPages);
+                // console.log(result.logs);
+                console.log('Success');
+                result.stream.pipe(fs.createWriteStream(`./${username}.pdf`));
+                conversion.kill(); // necessary if you use the electron-server strategy, see below for details
+                // open(`./${username}.pdf`);
+              });
+            })
         })
       // pdf.create(html).toStream(function(err, stream){
       //   stream.pipe(fs.createWriteStream('./foo.pdf'));
