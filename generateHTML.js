@@ -26,7 +26,7 @@ const colors = {
 };
 
 function generateHTML(params) {
-  console.log("Params: " + params + " params.color: " + params.color);
+  
   return `<!DOCTYPE html>
 <html lang="en">
    <head>
