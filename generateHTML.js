@@ -183,16 +183,38 @@ function generateHTML(params) {
         </h1>
         <p>
             <div class="links-nav">
-            <a href= class="nav-link">Location</a>  || <a href="https://github.com/${params.name}" alt="Github link" class="nav-link">&nbsp; &nbsp;Github&nbsp; &nbsp;</a>  || <a href="http://${params.blog}" alt="Blog Link" class="nav-link">Blog</a>
+            <a href="https://github.com/${params.location}" class="nav-link">Location</a>  || <a href="https://github.com/${params.name}" alt="Github link" class="nav-link">&nbsp; &nbsp;Github&nbsp; &nbsp;</a>  || <a href="http://${params.blog}" alt="Blog Link" class="nav-link">Blog</a>
         </div>
         </p>
         <div class = "container">
+          <row>
             <h2>Bio</h2>
             <div class = "card">
                 <p>
                     ${params.bio}
                 </p>
             </div>
+          </row>
+          <row>
+            <div class="card">
+              <h3><b>Public Repositories</b></h3>
+              <h3><b>${params.public_repos}</b></h3>
+            </card>
+            <div class="card">
+              <h3><b>GitHub Stars</b></h3>
+              <h3><b>${params.totalStars}</b></h3>
+            </div>
+          </row>
+          <row>
+            <div class="card">
+              <h3><b>Followers</b></h3>
+              <h3><b>${params.followers}</b></h3>
+            </div>
+            <div class="card">
+              <h3><b>Following</b></h3>
+              <h3><b>${params.following}</b></h3>
+            </div>
+          </row>
         </div>
     </div>
     </body>`

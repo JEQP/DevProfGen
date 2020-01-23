@@ -41,22 +41,42 @@ function getPrompts() {
   inq
     .prompt(questions)
     .then(function ({ username, color }) { // enter the vars created above
-      // const username = params.username;
+      
       console.log("Color: " + color + " username: " + username);
       const queryUrl = `https://api.github.com/users/${username}`;
 
       axios.get(queryUrl).then(function (res) {
-        console.log("blog: " + res.data.blog);
-        return generateHtML({
-          username,
-          color,
-          ...res.data
-        });
-        
+
+        return res.data;
+
       })
+        .then(res => {
+          const queryUrl = `https://api.github.com/users/${username}/repos?per_page=100`;
+          axios.get(queryUrl).then(starResponse => {
+            const repoStars = starResponse.data.map(function (repo) {
+              return repo.stargazers_count;
+            });
+
+            let totalStars = 0;
+            repoStars.forEach(star => {
+              totalStars += star;
+            });
+            console.log("After Stars Color: " + color);
+            console.log("After Stars totalStars: " + totalStars);
+            console.log("After Stars res: " + res);
+            return generateHtML({
+              color,
+              ...res,
+              totalStars
+            });
+          }).catch()
+        })
+
+
+
         .then(htmlData => {
-          // console.log(htmlData);
-          console.log(typeof htmlData);
+          console.log(htmlData);
+          console.log("type of data: " + typeof htmlData);
 
           // console.log(htmlData);
           var conversion = convertFactory({
@@ -86,16 +106,16 @@ function getPrompts() {
       // pdf.create(generateHtML).toFile('./profile.pdf', function(err, htmlData) {
       //   if (err) return console.log(err);
       //   console.log("second:" + htmlData); 
-    
-})
+
+    })
 
 
-  
-      .catch (err => {
-  console.log(err);
-});
 
-    
+    .catch(err => {
+      console.log(err);
+    });
+
+
 };
 
 // function writeToFile(generateHTML, params) {
